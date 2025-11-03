@@ -1,0 +1,76 @@
+name: Deploy Health E-Commerce to Production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # Manual trigger
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  deploy-backend:
+    name: Deploy Backend to Render
+    runs-on: ubuntu-latest
+    
+    # Only deploy if all tests passed
+    needs: []  # Add test jobs as dependencies in real setup
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Trigger Render deployment
+        run: |
+          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+      
+      - name: Wait for deployment
+        run: sleep 60
+      
+      - name: Verify deployment
+        run: |
+          curl -f https://your-app.onrender.com/health || exit 1
+
+  deploy-frontend:
+    name: Deploy Frontend to Vercel
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      
+      - name: Build Frontend
+        working-directory: ./Frontend/Modul_3-UIUX_Best_Practices/finished-project
+        run: |
+          npm ci
+          npm run build
+      
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          working-directory: ./Frontend/Modul_3-UIUX_Best_Practices/finished-project
+      
+      - name: Notify deployment success
+        if: success()
+        run: |
+          echo "✅ Frontend deployed successfully!"
+          echo "URL: https://health-ecommerce.vercel.app"
+      
+      - name: Send Slack notification (optional)
+        if: always()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: 'Health E-Commerce deployment: ${{ job.status }}'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+

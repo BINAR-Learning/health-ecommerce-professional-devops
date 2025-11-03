@@ -1,0 +1,33 @@
+{
+  "name": "health-ecommerce-devops",
+  "version": "2.0.0",
+  "description": "DevOps Pipeline untuk Health E-Commerce MERN System",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint . --ext .js,.jsx",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "docs:swagger": "node scripts/generate-swagger.js",
+    "docs:postman": "echo 'Export dari Postman UI → Import ke repository'"
+  },
+  "keywords": [
+    "github-actions",
+    "ci-cd",
+    "swagger",
+    "postman",
+    "codecov",
+    "health-ecommerce"
+  ],
+  "author": "Pusbang Talenta Digital",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "eslint": "^8.56.0",
+    "prettier": "^3.1.1",
+    "husky": "^8.0.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
+  }
+}
+

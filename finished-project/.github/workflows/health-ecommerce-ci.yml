@@ -1,0 +1,246 @@
+name: Health E-Commerce CI Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  # Job 1: Lint Code
+  lint:
+    name: Lint & Format Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run ESLint
+        run: npm run lint
+        continue-on-error: false
+      
+      - name: Check code formatting
+        run: npm run format:check
+
+  # Job 2: Test Backend
+  test-backend:
+    name: Test Backend API
+    runs-on: ubuntu-latest
+    
+    services:
+      mongodb:
+        image: mongo:7.0
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --eval 'db.runCommand({ping: 1})'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Install backend dependencies
+        working-directory: ./Backend/Modul_5-External_API_Integration/finished-project
+        run: npm ci
+      
+      - name: Run backend tests
+        working-directory: ./Backend/Modul_5-External_API_Integration/finished-project
+        run: npm test
+        env:
+          MONGODB_URI: mongodb://localhost:27017/health-ecommerce-test
+          JWT_SECRET: test-secret-key
+          NODE_ENV: test
+      
+      - name: Generate coverage report
+        working-directory: ./Backend/Modul_5-External_API_Integration/finished-project
+        run: npm run test --coverage || echo "Coverage generation skipped"
+      
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./Backend/Modul_5-External_API_Integration/finished-project/coverage/lcov.info
+          flags: backend
+          name: backend-coverage
+          fail_ci_if_error: false
+
+  # Job 3: Test Frontend
+  test-frontend:
+    name: Test Frontend Application
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      
+      - name: Install frontend dependencies
+        working-directory: ./Frontend/Modul_3-UIUX_Best_Practices/finished-project
+        run: npm ci
+      
+      - name: Build frontend
+        working-directory: ./Frontend/Modul_3-UIUX_Best_Practices/finished-project
+        run: npm run build
+      
+      - name: Run frontend tests (if available)
+        working-directory: ./Frontend/Modul_3-UIUX_Best_Practices/finished-project
+        run: npm test || echo "No frontend unit tests configured"
+        continue-on-error: true
+
+  # Job 4: Integration Tests
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: [test-backend]
+    
+    services:
+      mongodb:
+        image: mongo:7.0
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --eval 'db.runCommand({ping: 1})'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      
+      - name: Install testing suite dependencies
+        working-directory: ./Common_Collaboration/Modul_1-Testing_Suite/finished-project
+        run: npm ci
+      
+      - name: Start backend in background
+        working-directory: ./Backend/Modul_5-External_API_Integration/finished-project
+        run: |
+          npm ci
+          npm run seed &
+          npm run dev &
+          sleep 10
+        env:
+          MONGODB_URI: mongodb://localhost:27017/health-ecommerce-test
+      
+      - name: Run integration tests
+        working-directory: ./Common_Collaboration/Modul_1-Testing_Suite/finished-project
+        run: npm run test:integration
+        env:
+          BACKEND_URL: http://localhost:5000
+
+  # Job 5: E2E Tests (Playwright)
+  e2e-tests:
+    name: E2E Tests (Playwright)
+    runs-on: ubuntu-latest
+    needs: [test-backend, test-frontend]
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      
+      - name: Install Playwright
+        working-directory: ./Common_Collaboration/Modul_1-Testing_Suite/finished-project
+        run: |
+          npm ci
+          npx playwright install chromium
+      
+      - name: Start backend & frontend
+        run: |
+          cd Backend/Modul_5-External_API_Integration/finished-project
+          npm ci && npm run dev &
+          
+          cd Frontend/Modul_3-UIUX_Best_Practices/finished-project
+          npm ci && npm run dev &
+          
+          sleep 15
+      
+      - name: Run Playwright tests
+        working-directory: ./Common_Collaboration/Modul_1-Testing_Suite/finished-project
+        run: npx playwright test
+      
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: Common_Collaboration/Modul_1-Testing_Suite/finished-project/playwright-report/
+          retention-days: 30
+
+  # Job 6: Security Scan
+  security-scan:
+    name: Security Vulnerability Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Run npm audit
+        run: |
+          cd Backend/Modul_5-External_API_Integration/finished-project
+          npm audit --audit-level=moderate || true
+      
+      - name: Snyk Security Scan
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: test
+
+  # Job 7: Build Check
+  build:
+    name: Build Verification
+    runs-on: ubuntu-latest
+    needs: [lint, test-backend, test-frontend]
+    
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      
+      - name: Build Frontend
+        working-directory: ./Frontend/Modul_3-UIUX_Best_Practices/finished-project
+        run: |
+          npm ci
+          npm run build
+      
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontend-build
+          path: Frontend/Modul_3-UIUX_Best_Practices/finished-project/dist/
+          retention-days: 7
+
