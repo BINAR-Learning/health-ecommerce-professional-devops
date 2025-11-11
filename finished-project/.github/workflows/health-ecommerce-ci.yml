@@ -290,11 +290,11 @@ jobs:
     steps:
       - name: Pipeline Status
         run: |
-          echo "✅ CI Pipeline Complete!"
-          echo "📊 Lint: ${{ needs.lint.result }}"
-          echo "🧪 Backend Unit: ${{ needs.test-backend-unit.result }}"
-          echo "🔗 Backend Integration: ${{ needs.test-backend-integration.result }}"
-          echo "⚛️  Frontend: ${{ needs.test-frontend.result }}"
-          echo "🎭 E2E: ${{ needs.test-e2e.result }}"
-          echo "🔒 Security: ${{ needs.security-scan.result }}"
-          echo "📈 Coverage: ${{ needs.coverage.result }}"
+          echo " CI Pipeline Complete!"
+          echo " Lint: ${{ needs.lint.result }}"
+          echo " Backend Unit: ${{ needs.test-backend-unit.result }}"
+          echo " Backend Integration: ${{ needs.test-backend-integration.result }}"
+          echo "  Frontend: ${{ needs.test-frontend.result }}"
+          echo " E2E: ${{ needs.test-e2e.result }}"
+          echo " Security: ${{ needs.security-scan.result }}"
+          echo " Coverage: ${{ needs.coverage.result }}"

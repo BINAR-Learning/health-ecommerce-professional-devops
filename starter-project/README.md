@@ -1,4 +1,4 @@
-# 📚 Health E-Commerce - GitHub Workflow (STARTER)
+#  Health E-Commerce - GitHub Workflow (STARTER)
 
 > **Practice Project: Learn CI/CD dan API documentation dengan TODOs**
 
@@ -6,26 +6,26 @@
 
 ---
 
-## 🎯 **What You'll Learn**
+##  **What You'll Learn**
 
 Di starter project ini, kamu akan practice:
 
-- ✅ **GitHub Actions** - Setup CI/CD pipeline dengan workflow files
-- ✅ **Conventional Commits** - Enforce commit message format
-- ✅ **Husky** - Git hooks untuk code quality
-- ✅ **API Documentation** - Swagger dan Postman collections
-- ✅ **Code Quality** - ESLint, Prettier
+-  **GitHub Actions** - Setup CI/CD pipeline dengan workflow files
+-  **Conventional Commits** - Enforce commit message format
+-  **Husky** - Git hooks untuk code quality
+-  **API Documentation** - Swagger dan Postman collections
+-  **Code Quality** - ESLint, Prettier
 
 ---
 
-## 📁 **Project Structure**
+##  **Project Structure**
 
 ```
 starter-project/
-├── package.json                 ✅ Dependencies ready
-├── .commitlintrc.js             ⚠️ TODO: Configure commit rules
+├── package.json                  Dependencies ready
+├── .commitlintrc.js              TODO: Configure commit rules
 ├── .github/workflows/
-│   └── ci-template.yml          ⚠️ TODO: Complete CI pipeline
+│   └── ci-template.yml           TODO: Complete CI pipeline
 └── README.md (This file!)
 ```
 
@@ -33,7 +33,7 @@ starter-project/
 
 ---
 
-## 🚀 **Quick Start**
+##  **Quick Start**
 
 ### Step 1: Install Dependencies
 
@@ -61,7 +61,7 @@ git commit -m "feat(workflow): add CI pipeline"
 
 ---
 
-## ✅ **Learning Path**
+##  **Learning Path**
 
 ### Task 1: Configure Commitlint (Easy - 20 min)
 
@@ -126,7 +126,7 @@ git push
 
 ---
 
-## 💡 **Hints & Tips**
+##  **Hints & Tips**
 
 ### Conventional Commits Format:
 
@@ -134,10 +134,10 @@ git push
 <type>(<scope>): <subject>
 
 Examples:
-✅ feat(auth): add JWT refresh token
-✅ fix(payment): handle timeout error
-✅ docs(api): update Swagger spec
-✅ test(cart): add unit tests
+ feat(auth): add JWT refresh token
+ fix(payment): handle timeout error
+ docs(api): update Swagger spec
+ test(cart): add unit tests
 ```
 
 ### GitHub Actions Basics:
@@ -161,7 +161,7 @@ jobs:
 
 ---
 
-## 🐛 **Troubleshooting**
+##  **Troubleshooting**
 
 ### "Husky not working"
 ```bash
@@ -185,21 +185,21 @@ chmod +x .husky/commit-msg  # Mac/Linux only
 
 ---
 
-## ✅ **Success Criteria**
+##  **Success Criteria**
 
 You're done when:
 
-- ✅ Commitlint rejects invalid commits
-- ✅ Commitlint accepts valid conventional commits
-- ✅ GitHub Actions workflow runs on push
-- ✅ Workflow includes lint & test jobs
-- ✅ Postman collection exported (optional)
-- ✅ You understand CI/CD basics
-- ✅ Ready for finished-project!
+-  Commitlint rejects invalid commits
+-  Commitlint accepts valid conventional commits
+-  GitHub Actions workflow runs on push
+-  Workflow includes lint & test jobs
+-  Postman collection exported (optional)
+-  You understand CI/CD basics
+-  Ready for finished-project!
 
 ---
 
-## 📚 **Resources**
+##  **Resources**
 
 - [GitHub Actions Docs](https://docs.github.com/en/actions)
 - [Conventional Commits](https://www.conventionalcommits.org/)
@@ -208,18 +208,18 @@ You're done when:
 
 ---
 
-## 🚀 **Next Steps**
+##  **Next Steps**
 
 After completing:
 
-1. ✅ Check finished-project untuk full CI/CD implementation
-2. ✅ Copy workflow to your actual project
-3. ✅ Setup branch protection rules
-4. ➡️ Final Project: Deploy with GitHub Actions
+1.  Check finished-project untuk full CI/CD implementation
+2.  Copy workflow to your actual project
+3.  Setup branch protection rules
+4.  Final Project: Deploy with GitHub Actions
 
 ---
 
-**Practice makes perfect! 📚✅**
+**Practice makes perfect! **
 
 _Starter Project - Common Modul 2_  
 _Practice CI/CD with TODOs_

@@ -44,16 +44,16 @@ CONVENTIONAL COMMITS FORMAT:
 <type>(<scope>): <subject>
 
 Examples of GOOD commits:
-✅ feat(auth): add JWT token refresh
-✅ fix(payment): handle Midtrans timeout
-✅ docs(api): update Swagger spec
-✅ test(cart): add integration tests
+ feat(auth): add JWT token refresh
+ fix(payment): handle Midtrans timeout
+ docs(api): update Swagger spec
+ test(cart): add integration tests
 
 Examples of BAD commits:
-❌ fix bug
-❌ update
-❌ WIP
-❌ asdasd
+ fix bug
+ update
+ WIP
+ asdasd
 
 COMMIT TYPES:
 

@@ -1,4 +1,4 @@
-# 📚 Health E-Commerce - Complete DevOps Pipeline
+#  Health E-Commerce - Complete DevOps Pipeline
 
 > **CI/CD, API Documentation & Deployment untuk Health E-Commerce MERN System**
 
@@ -6,24 +6,24 @@
 [![Node.js](https://img.shields.io/badge/Node.js-20_LTS-green)](https://nodejs.org/)
 [![Codecov](https://img.shields.io/badge/Codecov-integrated-brightgreen)](https://codecov.io/)
 
-**Professional DevOps setup untuk Health E-Commerce production deployment!** ✅
+**Professional DevOps setup untuk Health E-Commerce production deployment!** 
 
 ---
 
-## 🎯 Apa yang Termasuk?
+##  Apa yang Termasuk?
 
 **Complete DevOps Implementation:**
-- ✅ **GitHub Actions CI/CD** - Automated testing & deployment
-- ✅ **API Documentation** - Swagger/OpenAPI 3.1 spec (13 endpoints)
-- ✅ **Postman Collection** - Complete API testing collection
-- ✅ **Code Quality** - ESLint, Prettier, commitlint configured
-- ✅ **Coverage Tracking** - Codecov integration
-- ✅ **Security Scan** - npm audit + Snyk
-- ✅ **Auto Deployment** - Render (Backend) + Vercel (Frontend)
+-  **GitHub Actions CI/CD** - Automated testing & deployment
+-  **API Documentation** - Swagger/OpenAPI 3.1 spec (13 endpoints)
+-  **Postman Collection** - Complete API testing collection
+-  **Code Quality** - ESLint, Prettier, commitlint configured
+-  **Coverage Tracking** - Codecov integration
+-  **Security Scan** - npm audit + Snyk
+-  **Auto Deployment** - Render (Backend) + Vercel (Frontend)
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Setup Repository
 
@@ -50,7 +50,7 @@ npx husky add .husky/commit-msg 'npx --no -- commitlint --edit $1'
 
 ---
 
-## 🔄 GitHub Actions Workflows
+##  GitHub Actions Workflows
 
 ### Workflow 1: health-ecommerce-ci.yml
 
@@ -82,7 +82,7 @@ npx husky add .husky/commit-msg 'npx --no -- commitlint --edit $1'
 
 ---
 
-## 📖 API Documentation
+##  API Documentation
 
 ### Swagger/OpenAPI
 
@@ -162,7 +162,7 @@ Health E-Commerce - Complete API
 
 ---
 
-## 🔐 GitHub Secrets Configuration
+##  GitHub Secrets Configuration
 
 **Required Secrets untuk CI/CD:**
 
@@ -188,7 +188,7 @@ Settings → Secrets and variables → Actions → New repository secret
 
 ---
 
-## 🌿 Git Workflow (Git Flow)
+##  Git Workflow (Git Flow)
 
 ### Feature Development
 
@@ -245,7 +245,7 @@ git push origin v2.0.1
 
 ---
 
-## 🔄 CI/CD Pipeline Flow
+##  CI/CD Pipeline Flow
 
 ```
 Developer pushes code
@@ -264,7 +264,7 @@ GitHub Actions triggered
     │    │    │    │         │
     └────┴────┴────┴─────────┘
               ↓
-         All Pass? ✅
+         All Pass? 
               ↓
          Build Job
               ↓
@@ -281,12 +281,12 @@ Render.com           Vercel
     ↓                     ↓
 Slack Notification
     ↓
-  Done! 🎉
+  Done! 
 ```
 
 ---
 
-## 📝 Conventional Commits
+##  Conventional Commits
 
 **Format:**
 ```
@@ -300,14 +300,14 @@ Slack Notification
 **Examples:**
 
 ```bash
-# ✅ Good commits
+#  Good commits
 git commit -m "feat(products): add category filter API"
 git commit -m "fix(auth): resolve JWT token expiration issue"
 git commit -m "docs(api): update Swagger spec for payment endpoint"
 git commit -m "test(ai): add unit tests for chatbot service"
 git commit -m "chore(deps): update React to 18.3.1"
 
-# ❌ Bad commits (rejected by commitlint!)
+#  Bad commits (rejected by commitlint!)
 git commit -m "fix stuff"
 git commit -m "Update code"
 git commit -m "WIP"
@@ -324,9 +324,9 @@ git commit -m "WIP"
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
-### ❌ "GitHub Actions workflow syntax error"
+###  "GitHub Actions workflow syntax error"
 
 **Problem:** YAML indentation salah
 
@@ -343,7 +343,7 @@ Use YAML validator: http://www.yamllint.com/
 
 ---
 
-### ❌ "Codecov upload failed"
+###  "Codecov upload failed"
 
 **Problem:** Token tidak configured atau file path salah
 
@@ -362,7 +362,7 @@ ls -la coverage/  # Check lcov.info exists
 
 ---
 
-### ❌ "E2E tests fail in CI but pass locally"
+###  "E2E tests fail in CI but pass locally"
 
 **Problem:** Timing issues atau environment differences
 
@@ -380,7 +380,7 @@ await page.waitForTimeout(1000);
 
 ---
 
-### ❌ "Deployment to Vercel fails"
+###  "Deployment to Vercel fails"
 
 **Problem:** Token atau project ID salah
 
@@ -398,7 +398,7 @@ VERCEL_PROJECT_ID=prj_xxx
 
 ---
 
-### ❌ "Husky commit-msg hook not working"
+###  "Husky commit-msg hook not working"
 
 **Problem:** Husky belum initialized
 
@@ -414,7 +414,7 @@ git commit -m "test commit"
 
 ---
 
-## 📊 Workflow Status Badges
+##  Workflow Status Badges
 
 **Add to main README.md:**
 
@@ -426,7 +426,7 @@ git commit -m "test commit"
 
 ---
 
-## 💡 Challenge untuk Peserta
+##  Challenge untuk Peserta
 
 ### Challenge #1: Add Branch Protection Rules
 
@@ -435,11 +435,11 @@ Setup di GitHub:
 Settings → Branches → Add rule
 
 Branch name pattern: main
-✅ Require pull request before merging
-✅ Require status checks to pass before merging
+ Require pull request before merging
+ Require status checks to pass before merging
   - Select: lint, test-backend, test-frontend
-✅ Require branches to be up to date before merging
-✅ Include administrators
+ Require branches to be up to date before merging
+ Include administrators
 ```
 
 ---
@@ -467,7 +467,7 @@ Integrate Lighthouse CI:
 
 ---
 
-## 📖 Resources
+##  Resources
 
 **GitHub Actions:**
 - [Actions Documentation](https://docs.github.com/en/actions)
@@ -483,12 +483,12 @@ Integrate Lighthouse CI:
 
 ---
 
-**Professional workflow = Professional developer! 📚🚀**
+**Professional workflow = Professional developer! **
 
 ---
 
-**📁 Repository:** `health-ecommerce-devops`  
+** Repository:** `health-ecommerce-devops`  
 **System:** Health E-Commerce MERN  
 **CI/CD:** Automated testing & deployment  
-**Status:** Production-ready! ✅
+**Status:** Production-ready! 
 

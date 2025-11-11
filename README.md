@@ -1,4 +1,4 @@
-# 📚 health-ecommerce-professional-devops
+# health-ecommerce-professional-devops
 
 > **Professional DevOps Pipeline dengan GitHub Actions, API Documentation & Deployment**
 
@@ -12,51 +12,53 @@ Complete DevOps pipeline dengan Git workflow, CI/CD automation, API documentatio
 
 ---
 
-## 📦 Apa yang Ada di Repository Ini?
+## Apa yang Ada di Repository Ini?
 
 Repository ini berisi **2 versi project**:
 
 ```
 health-ecommerce-professional-devops/
 ├── README.md (Ini file yang kamu baca)
-├── starter-project/     # 📝 Basic templates (dengan TODO)
+├── starter-project/     #  Basic templates (dengan TODO)
 │   ├── README.md
 │   ├── .github/workflows/
-│   │   └── ci-template.yml      # ⚠️ TODO: Complete workflow
+│   │   └── ci-template.yml      #  TODO: Complete workflow
 │   ├── docs/
-│   │   ├── swagger-template.yaml  # ⚠️ TODO: Document endpoints
-│   │   └── pr-template.md         # ✅ PR template (ready!)
+│   │   ├── swagger-template.yaml  #  TODO: Document endpoints
+│   │   └── pr-template.md         #  PR template (ready!)
 │   └── package.json
-└── finished-project/    # ✅ Complete DevOps setup!
+└── finished-project/    #  Complete DevOps setup!
     ├── README.md
     ├── .github/workflows/
-    │   ├── health-ecommerce-ci.yml      # ✅ CI pipeline (7 jobs!)
-    │   └── deploy-production.yml        # ✅ Auto deployment!
+    │   ├── health-ecommerce-ci.yml      #  CI pipeline (7 jobs!)
+    │   └── deploy-production.yml        #  Auto deployment!
     ├── docs/
-    │   ├── Health-Ecommerce-Complete-API.postman_collection.json  # ✅ 13 endpoints!
-    │   └── swagger-example.yaml         # ✅ OpenAPI spec
-    ├── .commitlintrc.js                 # ✅ Commit message validation
-    ├── .gitignore                       # ✅ Git ignore rules
-    └── package.json                     # ✅ Husky, ESLint, Prettier
+    │   ├── Health-Ecommerce-Complete-API.postman_collection.json  #  13 endpoints!
+    │   └── swagger-example.yaml         #  OpenAPI spec
+    ├── .commitlintrc.js                 #  Commit message validation
+    ├── .gitignore                       #  Git ignore rules
+    └── package.json                     #  Husky, ESLint, Prettier
 ```
 
 **Pilih mana?**
+
 - **Starter** - Untuk **practice DevOps setup** (RECOMMENDED!)
 - **Finished** - Untuk **reference** complete workflows
 
 ---
 
-## 🚀 Quick Start (Untuk Newbie)
+## Quick Start (Untuk Newbie)
 
 ### Prerequisites
 
 Sebelum mulai, pastikan:
-- ✅ **Health E-Commerce project** sudah complete
-  - Backend Modul 1-5 (ULTIMATE Backend)
-  - Frontend Modul 1-3 (Complete UI)
-  - Common Modul 1 (Testing Suite)
-- ✅ **GitHub account** (untuk workflows)
-- ✅ **Git installed** locally
+
+- **Health E-Commerce project** sudah complete
+- Backend Modul 1-5 (ULTIMATE Backend)
+- Frontend Modul 1-3 (Complete UI)
+- Common Modul 1 (Testing Suite)
+- **GitHub account** (untuk workflows)
+- **Git installed** locally
 
 ---
 
@@ -124,31 +126,34 @@ git push origin main
 
 ---
 
-## 🎯 Apa yang Akan Kamu Pelajari?
+## Apa yang Akan Kamu Pelajari?
 
 **Common Modul 2** adalah **module terakhir** yang complete seluruh Intermediate Program!
 
 ### Konsep yang Dipelajari:
 
-- ✅ **Git Branching** - Git Flow & GitHub Flow strategies
-- ✅ **Pull Requests** - Effective PR descriptions & reviews
-- ✅ **GitHub Actions** - CI/CD automation pipelines
-- ✅ **Swagger/OpenAPI** - Professional API documentation
-- ✅ **Postman Collections** - API testing & sharing
-- ✅ **Code Quality** - ESLint, Prettier, commitlint
-- ✅ **Deployment** - Automated deploy to Render & Vercel
+- **Git Branching** - Git Flow & GitHub Flow strategies
+- **Pull Requests** - Effective PR descriptions & reviews
+- **GitHub Actions** - CI/CD automation pipelines
+- **Swagger/OpenAPI** - Professional API documentation
+- **Postman Collections** - API testing & sharing
+- **Code Quality** - ESLint, Prettier, commitlint
+- **Deployment** - Automated deploy to Render & Vercel
 
 ### Apa yang Disetup:
 
 **GitHub Actions Workflows:**
+
 - CI Pipeline (7 jobs: lint, test backend, test frontend, integration, E2E, security, build)
 - Deploy Pipeline (auto deploy on merge to main)
 
 **API Documentation:**
+
 - Postman collection (13 endpoints)
 - Swagger/OpenAPI spec (complete)
 
 **Code Quality:**
+
 - Conventional commits enforced
 - PR templates
 - Branch protection rules
@@ -157,20 +162,21 @@ git push origin main
 
 ---
 
-## 📁 Struktur Starter Project
+## Struktur Starter Project
 
 ```
 starter-project/
 ├── README.md              # Setup guide
 ├── .github/workflows/
-│   └── ci-template.yml        # ⚠️ TODO: Complete CI jobs
+│   └── ci-template.yml        #  TODO: Complete CI jobs
 ├── docs/
-│   ├── swagger-template.yaml  # ⚠️ TODO: Document endpoints
-│   └── pr-template.md         # ✅ PR template (ready!)
-└── package.json               # ⚠️ TODO: Add husky, commitlint
+│   ├── swagger-template.yaml  #  TODO: Document endpoints
+│   └── pr-template.md         #  PR template (ready!)
+└── package.json               #  TODO: Add husky, commitlint
 ```
 
 **TODOs:**
+
 - [ ] Complete CI workflow dengan test jobs
 - [ ] Add deployment workflow
 - [ ] Complete Swagger specification
@@ -179,40 +185,42 @@ starter-project/
 
 ---
 
-## 📁 Struktur Finished Project
+## Struktur Finished Project
 
 ```
 finished-project/
 ├── README.md              # Complete DevOps guide
 ├── .github/workflows/
-│   ├── health-ecommerce-ci.yml      # ✅ Complete CI (7 jobs!)
-│   └── deploy-production.yml        # ✅ Auto deployment!
+│   ├── health-ecommerce-ci.yml      #  Complete CI (7 jobs!)
+│   └── deploy-production.yml        #  Auto deployment!
 ├── docs/
-│   ├── Health-Ecommerce-Complete-API.postman_collection.json  # ✅ 13 endpoints!
-│   └── swagger-example.yaml         # ✅ OpenAPI 3.1 spec
-├── .commitlintrc.js                 # ✅ Conventional commits
-├── .gitignore                       # ✅ Ignore rules
-├── package.json                     # ✅ Husky, ESLint, Prettier
+│   ├── Health-Ecommerce-Complete-API.postman_collection.json  #  13 endpoints!
+│   └── swagger-example.yaml         #  OpenAPI 3.1 spec
+├── .commitlintrc.js                 #  Conventional commits
+├── .gitignore                       #  Ignore rules
+├── package.json                     #  Husky, ESLint, Prettier
 └── README.md
 ```
 
 **All implemented:**
-- ✅ GitHub Actions CI/CD (7 jobs)
-- ✅ Postman collection (13 endpoints)
-- ✅ Swagger documentation (complete)
-- ✅ Commit message validation
-- ✅ Code quality tools
-- ✅ Automated deployment
+
+- GitHub Actions CI/CD (7 jobs)
+- Postman collection (13 endpoints)
+- Swagger documentation (complete)
+- Commit message validation
+- Code quality tools
+- Automated deployment
 
 ---
 
-## 🔄 GitHub Actions Workflows
+## GitHub Actions Workflows
 
 ### CI Pipeline (health-ecommerce-ci.yml)
 
 **Triggers:** Push to main/develop, Pull Requests
 
 **Jobs:**
+
 ```
 1. Lint - ESLint + Prettier check
 2. Test Backend - Jest dengan MongoDB service
@@ -232,6 +240,7 @@ finished-project/
 **Triggers:** Push to main
 
 **Jobs:**
+
 ```
 1. Deploy Backend → Render.com
 2. Deploy Frontend → Vercel
@@ -240,13 +249,14 @@ finished-project/
 
 ---
 
-## 📖 API Documentation
+## API Documentation
 
 ### Postman Collection
 
 **File:** `docs/Health-Ecommerce-Complete-API.postman_collection.json`
 
 **Includes:**
+
 ```
 Health E-Commerce - Complete API
 ├── Health Check (1 request)
@@ -268,6 +278,7 @@ Health E-Commerce - Complete API
 **Total:** 13 pre-configured requests!
 
 **Import Steps:**
+
 ```
 1. Open Postman
 2. Click Import
@@ -281,11 +292,13 @@ Health E-Commerce - Complete API
 ### Swagger/OpenAPI
 
 **Access:**
+
 ```
 http://localhost:5000/api-docs
 ```
 
 **Features:**
+
 - Interactive API explorer
 - Try-it-out untuk all endpoints
 - Request/response examples
@@ -294,7 +307,7 @@ http://localhost:5000/api-docs
 
 ---
 
-## 🌿 Git Workflow
+## Git Workflow
 
 ### Git Flow Example
 
@@ -326,19 +339,21 @@ git push origin feature/ai-recommendations
 ### Conventional Commits
 
 **Format:**
+
 ```
 <type>(<scope>): <description>
 ```
 
 **Examples:**
+
 ```bash
-# ✅ Good commits
+#  Good commits
 git commit -m "feat(products): add category filter"
 git commit -m "fix(auth): resolve JWT expiration bug"
 git commit -m "docs(api): update Swagger spec"
 git commit -m "test(payment): add Midtrans integration tests"
 
-# ❌ Bad commits (rejected by commitlint!)
+#  Bad commits (rejected by commitlint!)
 git commit -m "fix bug"
 git commit -m "update code"
 git commit -m "WIP"
@@ -348,22 +363,26 @@ git commit -m "WIP"
 
 ---
 
-## 🔗 Hubungan dengan Modul Lain
+## Hubungan dengan Modul Lain
 
 **Dari Backend Modul 3:**
-- ✅ Swagger YAML untuk dokumentasi
+
+- Swagger YAML untuk dokumentasi
 
 **Dari Common Modul 1:**
-- ✅ Tests to automate in CI/CD
+
+- Tests to automate in CI/CD
 
 **Common Modul 2 (This!)** → Professional Workflow
-- 🆕 GitHub Actions automation
-- 🆕 Git branching strategies
-- 🆕 API documentation complete
-- 🆕 Deployment automation
-- 🆕 Code quality gates
+
+- GitHub Actions automation
+- Git branching strategies
+- API documentation complete
+- Deployment automation
+- Code quality gates
 
 **Ke Final Project:**
+
 - → Production deployment
 - → Team collaboration patterns
 - → Professional standards
@@ -372,11 +391,12 @@ git commit -m "WIP"
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
-### ❌ "GitHub Actions workflow failed"
+### "GitHub Actions workflow failed"
 
 **Solusi:**
+
 ```bash
 # 1. Check workflow logs on GitHub
 # Repository → Actions → Click failed workflow
@@ -393,9 +413,10 @@ git commit -m "WIP"
 
 ---
 
-### ❌ "Codecov upload failed"
+### "Codecov upload failed"
 
 **Solusi:**
+
 ```bash
 # 1. Add CODECOV_TOKEN to GitHub Secrets
 # Settings → Secrets and variables → Actions → New secret
@@ -412,9 +433,10 @@ ls -la coverage/lcov.info  # Should exist
 
 ---
 
-### ❌ "Deployment to Vercel failed"
+### "Deployment to Vercel failed"
 
 **Solusi:**
+
 ```bash
 # 1. Get Vercel tokens from: vercel.com/account/tokens
 # 2. Add to GitHub Secrets:
@@ -428,9 +450,10 @@ ls -la coverage/lcov.info  # Should exist
 
 ---
 
-### ❌ "Husky commit hooks not working"
+### "Husky commit hooks not working"
 
 **Solusi:**
+
 ```bash
 # Reinstall husky
 npx husky install
@@ -446,9 +469,10 @@ git commit -m "test: verify commitlint"
 
 ---
 
-### ❌ "Postman collection import error"
+### "Postman collection import error"
 
 **Solusi:**
+
 ```
 # Use Postman v10+
 # Check JSON format valid
@@ -461,7 +485,7 @@ git commit -m "test: verify commitlint"
 
 ---
 
-## 💡 Tips Sukses
+## Tips Sukses
 
 1. **Start with Git Flow** - Understand branching first
 2. **Practice Conventional Commits** - Use commitlint
@@ -473,9 +497,10 @@ git commit -m "test: verify commitlint"
 
 ---
 
-## 📚 Resources
+## Resources
 
 **Documentation:**
+
 - [GitHub Actions Docs](https://docs.github.com/en/actions)
 - [Workflow Syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
 - [Conventional Commits](https://www.conventionalcommits.org/)
@@ -483,38 +508,41 @@ git commit -m "test: verify commitlint"
 - [Postman Learning](https://learning.postman.com/)
 
 **Tools:**
+
 - [YAML Lint](http://www.yamllint.com/) - Validate workflows
 - [Swagger Editor](https://editor.swagger.io/) - Edit API specs
 - [Postman](https://www.postman.com/) - API testing
 - [Codecov](https://codecov.io/) - Coverage tracking
 
 **Git Flow:**
+
 - [Git Flow Cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/)
 - [GitHub Flow](https://guides.github.com/introduction/flow/)
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 After completing this module:
 
-1. ✅ **Setup workflows** untuk your projects
-2. ✅ **Document all APIs** dengan Swagger & Postman
-3. ✅ **Automate testing** in GitHub Actions
-4. ✅ **Configure deployment** ke cloud platforms
-5. ➡️ **Final Project** - Complete MERN integration & deploy
-6. 🎓 **Graduate** - Professional Fullstack Developer!
+1.  **Setup workflows** untuk your projects
+2.  **Document all APIs** dengan Swagger & Postman
+3.  **Automate testing** in GitHub Actions
+4.  **Configure deployment** ke cloud platforms
+5.  **Final Project** - Complete MERN integration & deploy
+6.  **Graduate** - Professional Fullstack Developer!
 
 ---
 
-**Professional workflow = Professional developer! 📚🚀**
+**Professional workflow = Professional developer! **
 
 _Modul 2 - GitHub Workflow & API Documentation_  
 _Part of Health E-Commerce Common Series_
 
 ---
 
-**📁 Repository Info:**
+** Repository Info:**
+
 - **Name:** `health-ecommerce-professional-devops`
 - **Type:** DevOps Pipeline & Documentation
 - **Focus:** CI/CD automation untuk Health E-Commerce

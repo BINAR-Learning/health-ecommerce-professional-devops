@@ -27,19 +27,19 @@ jobs:
       
       - name: Trigger Render deployment
         run: |
-          echo "🚀 Deploying backend to Render..."
+          echo " Deploying backend to Render..."
           curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" || echo "Deployment triggered"
         # RENDER_DEPLOY_HOOK_URL: Set in GitHub Secrets
         # Get from: Render Dashboard → Service → Settings → Deploy Hook
       
       - name: Wait for deployment
         run: |
-          echo "⏳ Waiting for deployment to complete (30s)..."
+          echo " Waiting for deployment to complete (30s)..."
           sleep 30
       
       - name: Verify deployment
         run: |
-          echo "✅ Verifying backend deployment..."
+          echo " Verifying backend deployment..."
           curl -f https://your-app.onrender.com/health || echo "Backend deployed"
         # Replace with your actual Render URL
 
@@ -76,8 +76,8 @@ jobs:
       
       - name: Verify frontend deployment
         run: |
-          echo "✅ Frontend deployed to Vercel!"
-          echo "🌐 URL: https://your-app.vercel.app"
+          echo " Frontend deployed to Vercel!"
+          echo " URL: https://your-app.vercel.app"
 
   # ==========================================
   # Deployment Summary & Notification
@@ -92,17 +92,17 @@ jobs:
       - name: Deployment Summary
         run: |
           echo "=========================================="
-          echo "🚀 Production Deployment Complete!"
+          echo " Production Deployment Complete!"
           echo "=========================================="
           echo ""
-          echo "📦 Backend Status: ${{ needs.deploy-backend.result }}"
-          echo "🎨 Frontend Status: ${{ needs.deploy-frontend.result }}"
+          echo " Backend Status: ${{ needs.deploy-backend.result }}"
+          echo " Frontend Status: ${{ needs.deploy-frontend.result }}"
           echo ""
-          echo "🔗 Backend URL: https://your-app.onrender.com"
-          echo "🌐 Frontend URL: https://your-app.vercel.app"
-          echo "📖 API Docs: https://your-app.onrender.com/api-docs"
+          echo " Backend URL: https://your-app.onrender.com"
+          echo " Frontend URL: https://your-app.vercel.app"
+          echo " API Docs: https://your-app.onrender.com/api-docs"
           echo ""
-          echo "✅ All systems deployed!"
+          echo " All systems deployed!"
       
       # Optional: Send Slack notification
       # Uncomment and configure if you have Slack webhook
