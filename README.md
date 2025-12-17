@@ -1,4 +1,4 @@
-# komdigi-fsd-intermediate-modul-1-common-health-ecommerce-professional-devops
+# komdigi-fsd-intermediate-modul-2-common-health-ecommerce-professional-devops
 
 > **Professional DevOps Pipeline dengan GitHub Actions, API Documentation & Deployment**
 
@@ -17,7 +17,7 @@ Complete DevOps pipeline dengan Git workflow, CI/CD automation, API documentatio
 Repository ini berisi **2 versi project**:
 
 ```
-komdigi-fsd-intermediate-modul-1-common-health-ecommerce-professional-devops/
+komdigi-fsd-intermediate-modul-2-common-health-ecommerce-professional-devops/
 ├── README.md (Ini file yang kamu baca)
 ├── starter-project/     #  Basic templates (dengan TODO)
 │   ├── README.md
@@ -91,23 +91,23 @@ npm install
 
 # 4. Pastikan MongoDB running
 # PENTING: MongoDB harus running sebelum menjalankan backend dan tests
-# 
+#
 # Opsi A (RECOMMENDED): Menggunakan MongoDB Compass atau MongoDB Atlas
 # - Buka MongoDB Compass
 # - Connect ke database: mongodb://localhost:27017
 # - Jika berhasil connect, berarti MongoDB sudah running
 # - Atau gunakan connection string dari MongoDB Atlas jika menggunakan cloud database
-# 
+#
 # Opsi B: Menggunakan MongoDB Service (Windows Service / macOS Service)
 # - Pastikan MongoDB service sudah running di system services
 # - Windows: Check Services app, cari "MongoDB"
 # - macOS: Check Activity Monitor atau system preferences
-# 
+#
 # Opsi C: Menggunakan mongod command (jika opsi A dan B tidak tersedia)
 # - Buka terminal baru
 # - Jalankan: mongod
 # - Pastikan MongoDB service running
-# 
+#
 # CATATAN: Jika mongod tidak jalan di local, tidak perlu dipaksakan
 # Gunakan MongoDB Compass untuk cek apakah database sudah accessible
 # Atau gunakan MongoDB Atlas (cloud) sebagai alternatif
@@ -123,6 +123,7 @@ npm run dev
 ```
 
 **VERIFIKASI BACKEND:**
+
 ```bash
 # Test backend health endpoint
 curl http://localhost:5000/health
@@ -156,6 +157,7 @@ npm run dev
 ```
 
 **VERIFIKASI FRONTEND:**
+
 ```bash
 # Buka browser: http://localhost:3000
 # Frontend harus load dan bisa connect ke backend
@@ -163,12 +165,14 @@ npm run dev
 ```
 
 **PENTING: URL Consistency**
+
 - Backend .env: `PORT=5000` - Backend running di `http://localhost:5000`
 - Frontend .env: `VITE_API_URL=http://localhost:5000` - Frontend connect ke `http://localhost:5000`
 - Testing .env: `BASE_URL=http://localhost:5000` - Tests hit `http://localhost:5000`
 - Semua URL harus konsisten!
 
 **Jika Backend atau Frontend tidak running:**
+
 - CI/CD workflows akan fail karena tidak bisa test
 - Pastikan kedua service running sebelum push ke GitHub
 - Atau setup GitHub Actions dengan service containers untuk automated testing
@@ -181,10 +185,10 @@ npm run dev
 
 ```bash
 # 1. Clone repository ini
-git clone https://github.com/your-username/komdigi-fsd-intermediate-modul-1-common-health-ecommerce-professional-devops.git
+git clone https://github.com/your-username/komdigi-fsd-intermediate-modul-2-common-health-ecommerce-professional-devops.git
 
 # 2. Masuk ke folder repository
-cd komdigi-fsd-intermediate-modul-1-common-health-ecommerce-professional-devops
+cd komdigi-fsd-intermediate-modul-2-common-health-ecommerce-professional-devops
 
 # 3. Masuk ke starter-project
 cd starter-project
@@ -206,10 +210,10 @@ cp -r docs ../../../your-project-root/
 
 ```bash
 # 1. Clone repository (jika belum)
-git clone https://github.com/your-username/komdigi-fsd-intermediate-modul-1-common-health-ecommerce-professional-devops.git
+git clone https://github.com/your-username/komdigi-fsd-intermediate-modul-2-common-health-ecommerce-professional-devops.git
 
 # 2. Masuk ke folder repository
-cd komdigi-fsd-intermediate-modul-1-common-health-ecommerce-professional-devops
+cd komdigi-fsd-intermediate-modul-2-common-health-ecommerce-professional-devops
 
 # 3. Masuk ke finished-project
 cd finished-project
@@ -506,7 +510,129 @@ git commit -m "WIP"
 
 ---
 
-## Troubleshooting
+## PENTING: GitHub Actions Setup - WAJIB DIBACA!
+
+### GitHub Actions Hanya Berjalan Jika Workflow Files Ada di ROOT Repository
+
+**PENTING:** GitHub Actions **HANYA** akan detect dan menjalankan workflow files yang berada di **ROOT repository**, bukan di subfolder!
+
+**Struktur yang BENAR untuk GitHub Actions:**
+
+```
+your-repository-root/          <- ROOT repository (ini yang di-push ke GitHub)
+├── .github/
+│   └── workflows/             <- Workflow files HARUS di sini (di root!)
+│       ├── health-ecommerce-ci.yml
+│       ├── deploy-production.yml
+│       └── test-workflow.yml
+├── README.md
+├── package.json
+└── ... (files lainnya)
+```
+
+**Struktur yang SALAH (tidak akan jalan):**
+
+```
+your-repository-root/
+├── finished-project/
+│   ├── .github/               <- SALAH! Workflow di subfolder tidak akan jalan
+│   │   └── workflows/
+│   │       └── *.yml
+│   └── ...
+└── ...
+```
+
+### Cara Setup GitHub Actions yang Benar
+
+**Jika finished-project adalah repository terpisah:**
+
+1. **Copy workflow files ke root finished-project:**
+
+```bash
+# Masuk ke finished-project
+cd finished-project
+
+# Pastikan .github/workflows/ ada di root finished-project
+ls -la .github/workflows/
+# Harus ada: health-ecommerce-ci.yml, deploy-production.yml, test-workflow.yml
+
+# Jika belum ada, copy dari folder lain atau buat manual
+mkdir -p .github/workflows
+# Copy workflow files ke .github/workflows/
+```
+
+2. **Commit dan push ke GitHub:**
+
+```bash
+# Pastikan workflow files ter-commit
+git add .github/workflows/
+git commit -m "ci: add GitHub Actions workflows"
+git push origin main
+
+# Setelah push, check GitHub Actions tab
+# Repository → Actions → Harus ada workflow runs!
+```
+
+**Jika ini adalah monorepo (multiple projects dalam 1 repo):**
+
+1. **Workflow files harus di root repository:**
+
+```bash
+# Di root repository (bukan di subfolder)
+mkdir -p .github/workflows
+
+# Copy atau buat workflow files di root
+# .github/workflows/health-ecommerce-ci.yml
+# .github/workflows/deploy-production.yml
+# .github/workflows/test-workflow.yml
+```
+
+2. **Update workflow paths jika perlu:**
+
+```yaml
+# Di workflow file, sesuaikan paths jika perlu:
+- name: Install dependencies
+  run: npm ci
+  working-directory: ./finished-project # Jika perlu run di subfolder
+```
+
+### Verifikasi Setup
+
+**Check apakah workflow files ada di lokasi yang benar:**
+
+```bash
+# Dari root repository
+ls -la .github/workflows/
+
+# Harus ada:
+# - health-ecommerce-ci.yml
+# - deploy-production.yml
+# - test-workflow.yml
+```
+
+**Check apakah files sudah di-commit:**
+
+```bash
+git status
+# .github/workflows/ harus tidak muncul di untracked files
+
+# Jika muncul, commit dulu:
+git add .github/workflows/
+git commit -m "ci: add GitHub Actions workflows"
+git push origin main
+```
+
+**Check di GitHub:**
+
+1. Buka repository di GitHub
+2. Klik tab **Actions**
+3. Harus ada workflow runs muncul setelah push
+4. Jika tidak ada, check:
+   - Apakah `.github/workflows/` ada di root repository?
+   - Apakah files sudah di-commit dan push?
+   - Apakah branch name sesuai (main, master, develop)?
+
+### Troubleshooting
 
 ### "GitHub Actions tidak jalan setelah push"
 
@@ -514,32 +640,37 @@ git commit -m "WIP"
 
 **Fix:**
 
-1. **Pastikan file workflow ada di lokasi yang benar:**
+1. **Pastikan file workflow ada di lokasi yang benar (ROOT repository):**
+
 ```bash
-# File harus ada di root repository:
+# File HARUS ada di root repository:
 .github/workflows/*.yml
 
-# Jika finished-project adalah repo terpisah:
-# finished-project/.github/workflows/*.yml
+# BUKAN di subfolder seperti:
+# finished-project/.github/workflows/*.yml  <- SALAH!
 
-# Verifikasi:
+# Verifikasi dari root repository:
 ls -la .github/workflows/
 # Harus ada: health-ecommerce-ci.yml, deploy-production.yml, test-workflow.yml
 ```
 
-2. **Pastikan file sudah di-commit dan push:**
-```bash
-# Check apakah file ter-commit:
-git status
-# Harus tidak ada .github/workflows/ di untracked files
+2. **Pastikan file sudah di-commit dan push (dari ROOT repository):**
 
-# Jika belum, commit dan push:
+```bash
+# Dari root repository, check apakah file ter-commit:
+git status
+# .github/workflows/ harus tidak muncul di untracked files
+
+# Jika belum, commit dan push dari root:
 git add .github/workflows/
 git commit -m "ci: add GitHub Actions workflows"
 git push origin main
+
+# PENTING: Push dari root repository, bukan dari subfolder!
 ```
 
 3. **Check branch name:**
+
 ```bash
 # Workflow trigger untuk branch: main, master, develop
 # Jika branch kamu bukan salah satu dari ini, workflow tidak akan jalan
@@ -552,6 +683,7 @@ git branch -m main  # atau master
 ```
 
 4. **Check GitHub repository settings:**
+
 ```
 - Buka: https://github.com/your-username/repo/settings/actions
 - Pastikan "Allow all actions and reusable workflows" enabled
@@ -559,6 +691,7 @@ git branch -m main  # atau master
 ```
 
 5. **Manual trigger untuk testing:**
+
 ```
 - Buka: https://github.com/your-username/repo/actions
 - Pilih workflow: "Test Workflow" atau "Health E-Commerce CI Pipeline"
@@ -567,6 +700,7 @@ git branch -m main  # atau master
 ```
 
 6. **Test dengan workflow sederhana:**
+
 ```bash
 # File test-workflow.yml sudah dibuat untuk testing
 # Push file ini dulu untuk verify workflow bisa jalan:
@@ -729,7 +863,7 @@ _Part of Health E-Commerce Common Series_
 
 ** Repository Info:**
 
-- **Name:** `komdigi-fsd-intermediate-modul-1-common-health-ecommerce-professional-devops`
+- **Name:** `komdigi-fsd-intermediate-modul-2-common-health-ecommerce-professional-devops`
 - **Type:** DevOps Pipeline & Documentation
 - **Focus:** CI/CD automation untuk Health E-Commerce
 - **Structure:** 1 Repo, 2 Folders (starter + finished)

@@ -667,7 +667,7 @@ Integrate Lighthouse CI:
 
 ---
 
-** Repository:** `komdigi-fsd-intermediate-modul-1-common-health-ecommerce-professional-devops`  
+** Repository:** `komdigi-fsd-intermediate-modul-2-common-health-ecommerce-professional-devops`  
 **System:** Health E-Commerce MERN  
 **CI/CD:** Automated testing & deployment  
 **Status:** Production-ready! 
