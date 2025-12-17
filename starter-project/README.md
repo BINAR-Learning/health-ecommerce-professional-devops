@@ -35,6 +35,113 @@ starter-project/
 
 ##  **Quick Start**
 
+### WAJIB: Setup Backend dan Frontend Terlebih Dahulu
+
+PENTING: DevOps workflows ini memerlukan backend final dari Modul 5 dan frontend final dari Modul 3 yang sudah complete dan running. Pastikan keduanya running sebelum menjalankan CI/CD workflows.
+
+**Terminal 1: Setup dan Start Backend (Modul 5)**
+
+```bash
+# 1. Navigate ke Backend Modul 5 (Final Backend Project)
+cd ../../backend/health-ecommerce-external-integration/finished-project
+
+# 2. Install dependencies (jika belum)
+npm install
+
+# 3. Setup .env file dengan API keys yang diperlukan:
+# Buat file .env di folder finished-project backend
+# Isi dengan:
+# PORT=5000
+# MONGODB_URI=mongodb://localhost:27017/health_ecommerce
+# JWT_SECRET=your_jwt_secret_key
+# GEMINI_API_KEY=your_google_gemini_api_key
+# MIDTRANS_SERVER_KEY=your_midtrans_server_key
+# MIDTRANS_CLIENT_KEY=your_midtrans_client_key
+# CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+# CLOUDINARY_API_KEY=your_cloudinary_api_key
+# CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+
+# 4. Pastikan MongoDB running
+# PENTING: MongoDB harus running sebelum menjalankan backend dan tests
+# 
+# Opsi A (RECOMMENDED): Menggunakan MongoDB Compass atau MongoDB Atlas
+# - Buka MongoDB Compass
+# - Connect ke database: mongodb://localhost:27017
+# - Jika berhasil connect, berarti MongoDB sudah running
+# - Atau gunakan connection string dari MongoDB Atlas jika menggunakan cloud database
+# 
+# Opsi B: Menggunakan MongoDB Service (Windows Service / macOS Service)
+# - Pastikan MongoDB service sudah running di system services
+# - Windows: Check Services app, cari "MongoDB"
+# - macOS: Check Activity Monitor atau system preferences
+# 
+# Opsi C: Menggunakan mongod command (jika opsi A dan B tidak tersedia)
+# - Buka terminal baru
+# - Jalankan: mongod
+# - Pastikan MongoDB service running
+# 
+# CATATAN: Jika mongod tidak jalan di local, tidak perlu dipaksakan
+# Gunakan MongoDB Compass untuk cek apakah database sudah accessible
+# Atau gunakan MongoDB Atlas (cloud) sebagai alternatif
+
+# 5. Seed database dengan sample data
+npm run seed
+
+# 6. Start backend server (keep running di terminal ini!)
+npm run dev
+
+# Backend akan running di: http://localhost:5000
+# Pastikan backend URL ini sama dengan BASE_URL di testing .env
+```
+
+**VERIFIKASI BACKEND:**
+```bash
+# Test backend health endpoint
+curl http://localhost:5000/health
+# Should return: {"success":true,"message":"Server is running"}
+
+# Atau buka di browser: http://localhost:5000/health
+```
+
+**Terminal 2: Setup dan Start Frontend (Modul 3)**
+
+```bash
+# 1. Navigate ke Frontend Modul 3 (Final Frontend Project)
+cd ../../frontend/health-ecommerce-production-uiux/finished-project
+
+# 2. Install dependencies (jika belum)
+npm install
+
+# 3. Setup .env file:
+# Buat file .env di folder finished-project frontend
+# Isi dengan:
+# VITE_API_URL=http://localhost:5000
+
+# PENTING: Pastikan VITE_API_URL sama dengan backend URL yang running!
+# Jika backend running di http://localhost:5000, maka:
+# VITE_API_URL=http://localhost:5000
+
+# 4. Start frontend server (keep running di terminal ini!)
+npm run dev
+
+# Frontend akan running di: http://localhost:3000
+```
+
+**VERIFIKASI FRONTEND:**
+```bash
+# Buka browser: http://localhost:3000
+# Frontend harus load dan bisa connect ke backend
+# Test: Login atau browse products untuk verify API connection
+```
+
+**PENTING: URL Consistency**
+- Backend .env: `PORT=5000` - Backend running di `http://localhost:5000`
+- Frontend .env: `VITE_API_URL=http://localhost:5000` - Frontend connect ke `http://localhost:5000`
+- Testing .env: `BASE_URL=http://localhost:5000` - Tests hit `http://localhost:5000`
+- Semua URL harus konsisten!
+
+---
+
 ### Step 1: Install Dependencies
 
 ```bash
@@ -101,7 +208,7 @@ git add .
 git commit -m "ci: add workflow"
 git push
 
-# Check: GitHub → Actions tab
+# Check: GitHub - Actions tab
 # Workflow should run!
 ```
 

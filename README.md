@@ -1,4 +1,4 @@
-# health-ecommerce-professional-devops
+# komdigi-fsd-intermediate-modul-1-common-health-ecommerce-professional-devops
 
 > **Professional DevOps Pipeline dengan GitHub Actions, API Documentation & Deployment**
 
@@ -17,7 +17,7 @@ Complete DevOps pipeline dengan Git workflow, CI/CD automation, API documentatio
 Repository ini berisi **2 versi project**:
 
 ```
-health-ecommerce-professional-devops/
+komdigi-fsd-intermediate-modul-1-common-health-ecommerce-professional-devops/
 ├── README.md (Ini file yang kamu baca)
 ├── starter-project/     #  Basic templates (dengan TODO)
 │   ├── README.md
@@ -54,11 +54,126 @@ health-ecommerce-professional-devops/
 Sebelum mulai, pastikan:
 
 - **Health E-Commerce project** sudah complete
-- Backend Modul 1-5 (ULTIMATE Backend)
-- Frontend Modul 1-3 (Complete UI)
+- Backend Modul 5 (Final Backend dari Intermediate Program)
+- Frontend Modul 3 (Final Frontend dari Intermediate Program)
 - Common Modul 1 (Testing Suite)
 - **GitHub account** (untuk workflows)
 - **Git installed** locally
+- **MongoDB accessible** (untuk testing dan development)
+
+---
+
+### WAJIB: Setup Backend dan Frontend Terlebih Dahulu
+
+PENTING: DevOps workflows ini memerlukan backend final dari Modul 5 dan frontend final dari Modul 3 yang sudah complete dan running. Pastikan keduanya running sebelum menjalankan CI/CD workflows.
+
+**Terminal 1: Setup dan Start Backend (Modul 5)**
+
+```bash
+# 1. Navigate ke Backend Modul 5 (Final Backend Project)
+cd ../../backend/health-ecommerce-external-integration/finished-project
+
+# 2. Install dependencies (jika belum)
+npm install
+
+# 3. Setup .env file dengan API keys yang diperlukan:
+# Buat file .env di folder finished-project backend
+# Isi dengan:
+# PORT=5000
+# MONGODB_URI=mongodb://localhost:27017/health_ecommerce
+# JWT_SECRET=your_jwt_secret_key
+# GEMINI_API_KEY=your_google_gemini_api_key
+# MIDTRANS_SERVER_KEY=your_midtrans_server_key
+# MIDTRANS_CLIENT_KEY=your_midtrans_client_key
+# CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+# CLOUDINARY_API_KEY=your_cloudinary_api_key
+# CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+
+# 4. Pastikan MongoDB running
+# PENTING: MongoDB harus running sebelum menjalankan backend dan tests
+# 
+# Opsi A (RECOMMENDED): Menggunakan MongoDB Compass atau MongoDB Atlas
+# - Buka MongoDB Compass
+# - Connect ke database: mongodb://localhost:27017
+# - Jika berhasil connect, berarti MongoDB sudah running
+# - Atau gunakan connection string dari MongoDB Atlas jika menggunakan cloud database
+# 
+# Opsi B: Menggunakan MongoDB Service (Windows Service / macOS Service)
+# - Pastikan MongoDB service sudah running di system services
+# - Windows: Check Services app, cari "MongoDB"
+# - macOS: Check Activity Monitor atau system preferences
+# 
+# Opsi C: Menggunakan mongod command (jika opsi A dan B tidak tersedia)
+# - Buka terminal baru
+# - Jalankan: mongod
+# - Pastikan MongoDB service running
+# 
+# CATATAN: Jika mongod tidak jalan di local, tidak perlu dipaksakan
+# Gunakan MongoDB Compass untuk cek apakah database sudah accessible
+# Atau gunakan MongoDB Atlas (cloud) sebagai alternatif
+
+# 5. Seed database dengan sample data
+npm run seed
+
+# 6. Start backend server (keep running di terminal ini!)
+npm run dev
+
+# Backend akan running di: http://localhost:5000
+# Pastikan backend URL ini sama dengan BASE_URL di testing .env
+```
+
+**VERIFIKASI BACKEND:**
+```bash
+# Test backend health endpoint
+curl http://localhost:5000/health
+# Should return: {"success":true,"message":"Server is running"}
+
+# Atau buka di browser: http://localhost:5000/health
+```
+
+**Terminal 2: Setup dan Start Frontend (Modul 3)**
+
+```bash
+# 1. Navigate ke Frontend Modul 3 (Final Frontend Project)
+cd ../../frontend/health-ecommerce-production-uiux/finished-project
+
+# 2. Install dependencies (jika belum)
+npm install
+
+# 3. Setup .env file:
+# Buat file .env di folder finished-project frontend
+# Isi dengan:
+# VITE_API_URL=http://localhost:5000
+
+# PENTING: Pastikan VITE_API_URL sama dengan backend URL yang running!
+# Jika backend running di http://localhost:5000, maka:
+# VITE_API_URL=http://localhost:5000
+
+# 4. Start frontend server (keep running di terminal ini!)
+npm run dev
+
+# Frontend akan running di: http://localhost:3000
+```
+
+**VERIFIKASI FRONTEND:**
+```bash
+# Buka browser: http://localhost:3000
+# Frontend harus load dan bisa connect ke backend
+# Test: Login atau browse products untuk verify API connection
+```
+
+**PENTING: URL Consistency**
+- Backend .env: `PORT=5000` - Backend running di `http://localhost:5000`
+- Frontend .env: `VITE_API_URL=http://localhost:5000` - Frontend connect ke `http://localhost:5000`
+- Testing .env: `BASE_URL=http://localhost:5000` - Tests hit `http://localhost:5000`
+- Semua URL harus konsisten!
+
+**Jika Backend atau Frontend tidak running:**
+- CI/CD workflows akan fail karena tidak bisa test
+- Pastikan kedua service running sebelum push ke GitHub
+- Atau setup GitHub Actions dengan service containers untuk automated testing
+
+---
 
 ---
 
@@ -66,10 +181,10 @@ Sebelum mulai, pastikan:
 
 ```bash
 # 1. Clone repository ini
-git clone https://github.com/your-username/health-ecommerce-professional-devops.git
+git clone https://github.com/your-username/komdigi-fsd-intermediate-modul-1-common-health-ecommerce-professional-devops.git
 
 # 2. Masuk ke folder repository
-cd health-ecommerce-professional-devops
+cd komdigi-fsd-intermediate-modul-1-common-health-ecommerce-professional-devops
 
 # 3. Masuk ke starter-project
 cd starter-project
@@ -91,10 +206,10 @@ cp -r docs ../../../your-project-root/
 
 ```bash
 # 1. Clone repository (jika belum)
-git clone https://github.com/your-username/health-ecommerce-professional-devops.git
+git clone https://github.com/your-username/komdigi-fsd-intermediate-modul-1-common-health-ecommerce-professional-devops.git
 
 # 2. Masuk ke folder repository
-cd health-ecommerce-professional-devops
+cd komdigi-fsd-intermediate-modul-1-common-health-ecommerce-professional-devops
 
 # 3. Masuk ke finished-project
 cd finished-project
@@ -242,9 +357,9 @@ finished-project/
 **Jobs:**
 
 ```
-1. Deploy Backend → Render.com
-2. Deploy Frontend → Vercel
-3. Notify Team → Slack (optional)
+1. Deploy Backend to Render.com
+2. Deploy Frontend to Vercel
+3. Notify Team via Slack (optional)
 ```
 
 ---
@@ -324,14 +439,14 @@ git commit -m "feat(ai): add product recommendations"
 git push origin feature/ai-recommendations
 
 # Create PR on GitHub
-# → GitHub Actions automatically:
-#    ✓ Runs all tests
-#    ✓ Checks code quality
-#    ✓ Shows results in PR
+# GitHub Actions automatically:
+#    - Runs all tests
+#    - Checks code quality
+#    - Shows results in PR
 
 # After review & approval, merge
-# → If main branch:
-#    ✓ Automatically deploys to production!
+# If main branch:
+#    - Automatically deploys to production!
 ```
 
 ---
@@ -373,7 +488,7 @@ git commit -m "WIP"
 
 - Tests to automate in CI/CD
 
-**Common Modul 2 (This!)** → Professional Workflow
+**Common Modul 2 (This!)** - Professional Workflow
 
 - GitHub Actions automation
 - Git branching strategies
@@ -419,7 +534,7 @@ git commit -m "WIP"
 
 ```bash
 # 1. Add CODECOV_TOKEN to GitHub Secrets
-# Settings → Secrets and variables → Actions → New secret
+# Settings - Secrets and variables - Actions - New secret
 # Name: CODECOV_TOKEN
 # Value: (from codecov.io)
 
@@ -543,7 +658,7 @@ _Part of Health E-Commerce Common Series_
 
 ** Repository Info:**
 
-- **Name:** `health-ecommerce-professional-devops`
+- **Name:** `komdigi-fsd-intermediate-modul-1-common-health-ecommerce-professional-devops`
 - **Type:** DevOps Pipeline & Documentation
 - **Focus:** CI/CD automation untuk Health E-Commerce
 - **Structure:** 1 Repo, 2 Folders (starter + finished)
