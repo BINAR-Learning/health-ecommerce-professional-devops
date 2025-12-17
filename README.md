@@ -508,6 +508,77 @@ git commit -m "WIP"
 
 ## Troubleshooting
 
+### "GitHub Actions tidak jalan setelah push"
+
+**Problem:** Workflow tidak muncul di GitHub Actions tab setelah push
+
+**Fix:**
+
+1. **Pastikan file workflow ada di lokasi yang benar:**
+```bash
+# File harus ada di root repository:
+.github/workflows/*.yml
+
+# Jika finished-project adalah repo terpisah:
+# finished-project/.github/workflows/*.yml
+
+# Verifikasi:
+ls -la .github/workflows/
+# Harus ada: health-ecommerce-ci.yml, deploy-production.yml, test-workflow.yml
+```
+
+2. **Pastikan file sudah di-commit dan push:**
+```bash
+# Check apakah file ter-commit:
+git status
+# Harus tidak ada .github/workflows/ di untracked files
+
+# Jika belum, commit dan push:
+git add .github/workflows/
+git commit -m "ci: add GitHub Actions workflows"
+git push origin main
+```
+
+3. **Check branch name:**
+```bash
+# Workflow trigger untuk branch: main, master, develop
+# Jika branch kamu bukan salah satu dari ini, workflow tidak akan jalan
+
+# Check current branch:
+git branch
+
+# Jika perlu, rename branch:
+git branch -m main  # atau master
+```
+
+4. **Check GitHub repository settings:**
+```
+- Buka: https://github.com/your-username/repo/settings/actions
+- Pastikan "Allow all actions and reusable workflows" enabled
+- Atau "Allow local actions and reusable workflows" enabled
+```
+
+5. **Manual trigger untuk testing:**
+```
+- Buka: https://github.com/your-username/repo/actions
+- Pilih workflow: "Test Workflow" atau "Health E-Commerce CI Pipeline"
+- Click "Run workflow" button (di kanan atas)
+- Pilih branch dan click "Run workflow"
+```
+
+6. **Test dengan workflow sederhana:**
+```bash
+# File test-workflow.yml sudah dibuat untuk testing
+# Push file ini dulu untuk verify workflow bisa jalan:
+git add .github/workflows/test-workflow.yml
+git commit -m "ci: add test workflow"
+git push origin main
+
+# Check GitHub Actions tab - harus ada workflow run!
+```
+
+---
+
 ### "GitHub Actions workflow failed"
 
 **Solusi:**

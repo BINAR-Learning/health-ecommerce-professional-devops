@@ -2,7 +2,7 @@ name: Deploy Health E-Commerce to Production
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   workflow_dispatch:
 
 jobs:

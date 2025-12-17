@@ -438,6 +438,74 @@ git commit -m "WIP"
 
 ##  Troubleshooting
 
+###  "GitHub Actions tidak jalan setelah push"
+
+**Problem:** Workflow tidak muncul di GitHub Actions tab
+
+**Fix:**
+
+1. **Pastikan file workflow ada di lokasi yang benar:**
+```bash
+# File harus ada di:
+.github/workflows/*.yml
+# Bukan di subfolder lain!
+
+# Verifikasi:
+ls -la .github/workflows/
+# Harus ada: health-ecommerce-ci.yml dan deploy-production.yml
+```
+
+2. **Pastikan file sudah di-commit dan push:**
+```bash
+# Check apakah file ter-commit:
+git status
+# Harus tidak ada .github/workflows/ di untracked files
+
+# Jika belum, commit dan push:
+git add .github/workflows/
+git commit -m "ci: add GitHub Actions workflows"
+git push origin main
+```
+
+3. **Check branch name:**
+```bash
+# Workflow trigger untuk branch: main, master, develop
+# Jika branch kamu bukan salah satu dari ini, workflow tidak akan jalan
+
+# Check current branch:
+git branch
+
+# Jika perlu, rename branch:
+git branch -m main  # atau master
+```
+
+4. **Check GitHub repository settings:**
+```
+- Buka: https://github.com/your-username/repo/settings/actions
+- Pastikan "Allow all actions and reusable workflows" enabled
+- Atau "Allow local actions and reusable workflows" enabled
+```
+
+5. **Manual trigger untuk testing:**
+```
+- Buka: https://github.com/your-username/repo/actions
+- Pilih workflow: "Health E-Commerce CI Pipeline"
+- Click "Run workflow" button
+- Pilih branch dan click "Run workflow"
+```
+
+6. **Check workflow file syntax:**
+```bash
+# Validasi YAML syntax online:
+# https://www.yamllint.com/
+
+# Atau install yamllint:
+pip install yamllint
+yamllint .github/workflows/*.yml
+```
+
+---
+
 ###  "GitHub Actions workflow syntax error"
 
 **Problem:** YAML indentation salah
